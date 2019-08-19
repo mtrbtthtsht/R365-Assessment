@@ -8,13 +8,16 @@ namespace StringCalculator
     {
         public static int Add(string numbers)
         {
-            if (numbers == "1") return 1;
-            if (numbers.Contains(","))
-            {
+            if (numbers == "") return 0;
+
+           
                 var values = numbers.Split(',');
-                return int.Parse(values[0]) + int.Parse(values[1]);
-            }
-            return 0;
+                var sum = 0;
+                foreach(var n in values)
+                {
+                    sum += int.Parse(n);
+                }
+                return sum;
         }
     }
 }
