@@ -29,6 +29,12 @@ namespace StringCalculator
         {
             Assert.AreEqual(expected, Calc.Add(input));
         }
-        
+        //Step 3. support newline char as delim
+        [DataTestMethod]
+        [DataRow("1\n2,3", 6)]
+        public void Add_NewLineDelimiter(string input, int expected)
+        {
+            Assert.AreEqual(expected, Calc.Add(input));
+        }
     }
 }
