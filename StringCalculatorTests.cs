@@ -44,5 +44,12 @@ namespace StringCalculator
         {
             Assert.AreEqual(expected, Assert.ThrowsException<Exception>(() => Calc.Add(input)).Message);
         }
+        //step 5 ignore numbers higher than 1000
+        [DataTestMethod]
+        [DataRow("3,5,1001", 8)]
+        public void Add_WhenNumbersOver1000_DontAdd(string input, int expected)
+        {
+            Assert.AreEqual(expected, Calc.Add(input));
+        }
     }
 }

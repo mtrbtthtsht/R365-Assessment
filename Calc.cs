@@ -24,15 +24,19 @@ namespace StringCalculator
             var values = numbers.Split(',');
             List<int> negatives = new List<int>();
             var sum = 0;
-            for (int i = 0; i < values.Length; i++)
+
+            foreach (var v in values)
             {
-                int value = int.Parse(values[i]);
+                int value = int.Parse(v);
+                if (value > 1000) value = 0;
+
                 if (value < 0)
                 {
                     negatives.Add(value);
                 }
                 sum += value;
             }
+
             if (negatives.Count > 0)
             {
                 string msg = "negatives not allowed: ";
