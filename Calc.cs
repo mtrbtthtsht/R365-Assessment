@@ -9,22 +9,40 @@ namespace StringCalculator
         public static int Add(string numbers)
         {
             if (numbers == "") return 0;
-            numbers = numbers.Replace("\n", ",");
 
             var delimiter = ",";
+            numbers = numbers.Replace("\n", delimiter);
+
             if (numbers.StartsWith("//"))
             {
                 delimiter = numbers[2].ToString();
                 numbers = numbers.Substring(4);
             }
+
             numbers = numbers.Replace("\n", delimiter);
-                var values = numbers.Split(',');
-                var sum = 0;
-                foreach(var n in values)
+
+            var values = numbers.Split(',');
+            List<int> negatives = new List<int>();
+            var sum = 0;
+            for (int i = 0; i < values.Length; i++)
+            {
+                int value = int.Parse(values[i]);
+                if (value < 0)
                 {
-                    sum += int.Parse(n);
+                    negatives.Add(value);
                 }
-                return sum;
+                sum += value;
+            }
+            if (negatives.Count > 0)
+            {
+                string msg = "negatives not allowed: ";
+                for (int i = 0; i < negatives.Count; i++)
+                {
+                    msg += negatives[i] + ",";
+                }
+                throw new Exception(msg);
+            }
+            return sum;
         }
     }
 }

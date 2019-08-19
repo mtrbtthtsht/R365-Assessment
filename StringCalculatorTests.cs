@@ -36,5 +36,13 @@ namespace StringCalculator
         {
             Assert.AreEqual(expected, Calc.Add(input));
         }
+        //Step 4. negative not allowed throw exception
+        [DataTestMethod]
+        [DataRow("1,2,-3", "negatives not allowed: -3,")]
+        [DataRow("1,2,3,-4,-5,6,-7", "negatives not allowed: -4,-5,-7,")]
+        public void Add_Negatives_ThrowsException(string input, string expected)
+        {
+            Assert.AreEqual(expected, Assert.ThrowsException<Exception>(() => Calc.Add(input)).Message);
+        }
     }
 }
