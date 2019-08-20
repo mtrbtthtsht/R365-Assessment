@@ -89,6 +89,14 @@ namespace StringCalculator
 
             Assert.AreEqual(expected, calculator.Add(input));
         }
-        
+        //Step 8 support multiple delimiters
+        [DataTestMethod]
+        [DataRow("//[*][!!][rrr]\n11rrr22*33!!44", 110)]
+        public void Add_MultipleDelimiters(string input, int expected)
+        {
+            var calculator = new Calc();
+
+            Assert.AreEqual(expected, calculator.Add(input));
+        }
     }
 }
