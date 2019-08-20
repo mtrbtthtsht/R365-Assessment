@@ -80,6 +80,15 @@ namespace StringCalculator
 
             Assert.AreEqual(expected, calculator.Add(input));
         }
+        //Step 7 support delimiter of any length
+        [DataTestMethod]
+        [DataRow("//[***]\n11***22***33", 66)]
+        public void Add_AnyLengthDelimiter(string input, int expected)
+        {
+            var calculator = new Calc();
+
+            Assert.AreEqual(expected, calculator.Add(input));
+        }
         
     }
 }
